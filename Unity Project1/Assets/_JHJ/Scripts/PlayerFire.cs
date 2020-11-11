@@ -13,7 +13,7 @@ public class PlayerFire : MonoBehaviour
     {
         Fire();
 
-        TogglePlanes();
+        //TogglePlanes();
     }
 
     private void Fire()
