@@ -14,14 +14,24 @@ public class Enemy : MonoBehaviour
     //충돌처리 - 리지드바디 사용할 것
 
     public GameObject bulletPrefab;
-    public GameObject player;
+    private GameObject player;
     public float speed = 5.0f;  //에너미 이동속도
     public float spawnTerm; 
     private float curTime;
+    public bool canFindPlayer = false; 
 
     private void Start()
     {
-        player = FindObjectOfType<PlayerMove>().gameObject;
+        if (GameObject.Find("Player") != null)
+        {
+            player = GameObject.Find("Player");
+            canFindPlayer = true;
+        }
+        else
+        {
+            player = null;
+            canFindPlayer = false; 
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +40,7 @@ public class Enemy : MonoBehaviour
         //아래로 이동 
         transform.Translate(Vector3.back * speed * Time.deltaTime);
 
-        if (gameObject.activeSelf == true && player.activeSelf == true)
+        if(gameObject.activeSelf == true && canFindPlayer)
         {
             FireBullet();
         }
@@ -53,8 +63,11 @@ public class Enemy : MonoBehaviour
         if(curTime > spawnTerm)
         {
             curTime = 0.0f;
+
+            if (GameObject.Find("Player") == null) return; 
+
             GameObject bullet = Instantiate(bulletPrefab);
-            Vector3 bulletPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1.5f);
+            Vector3 bulletPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2.0f);
             bullet.transform.position = bulletPos;
             //bullet.transform.position = transform.position;
         }

@@ -7,6 +7,9 @@ TagManager:
   - SpawnPos
   - Airplane
   - EnemyBullet
+  - Enemy
+  - BossBullet
+  - Boss
   - PlaneBullet
   layers:
   - Default
@@ -17,13 +20,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Bullet
+  - Boss
+  - BossBullet
+  - DestroyZone
+  - EnemyBullet
   - 
   - 
   - 

@@ -31,4 +31,18 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
         //gameObject -> 이 아이도 자주 사용하는거라 소문자로 만들어져 있음. 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(gameObject.tag.Equals("BossBullet"))
+        {
+            if (other.tag.Equals("Player")) Destroy(other.gameObject);
+        }
+        else
+        {
+            if (other.tag.Equals("Enemy") || other.tag.Equals("Boss")) Destroy(other.gameObject);
+        }
+
+        Destroy(gameObject);
+    }
 }
